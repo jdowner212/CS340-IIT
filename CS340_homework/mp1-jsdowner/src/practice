@@ -1,0 +1,25 @@
+drawOrbit' a e p t = translate (x' r (theta' e big_E)) (y' r (theta' e big_E)) (circleSolid r)
+
+
+
+big_E' :: Float -> Float -> Float
+big_E' e m | abs(0.5 * (m + (m + e * sin m )) - m) < 0.01 = m
+            | otherwise = big_E'' e (0.5 * (m + (m + e * sin m )))
+    where
+        big_E'' :: Float -> Float -> Float
+        big_E'' e g | abs(0.5 * (g + (m + e * sin g )) - g) < 0.01 = g
+                    | otherwise = big_E'' e (0.5 * (g + (m + e * sin g )))
+
+
+theta' :: Float -> Float -> Float
+theta' a b = 2 * atan (newtonsSqrt ((1 + a)/(1 - a)) * tan (b / 2))
+
+x' :: Float -> Float -> Float
+x' a b = a * cos b
+y' :: Float -> Float -> Float
+y' a b = a * sin b 
+
+n = 2 * pi / p
+big_M = n * t
+big_E = big_E' e big_M
+r = a * (1 - e * cos big_E)

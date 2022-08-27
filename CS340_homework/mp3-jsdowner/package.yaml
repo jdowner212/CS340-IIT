@@ -1,0 +1,40 @@
+name:       cs340mp3
+
+# By signing below, I pledge on my honor that I neither gave nor received any
+# unauthorized assistance on the code contained in this repository.
+
+author:     "Jane Downer"      # your name
+maintainer: "jsdowner@hawk.iit.edu"  # your IIT email
+
+dependencies:
+- base >= 4.7 && < 5
+- hspec
+- HUnit
+- HUnit-approx
+- QuickCheck
+- split
+
+executables:
+  mp3:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - cs340mp3
+
+library:
+  source-dirs: src
+
+tests:
+  mp3-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - cs340mp3

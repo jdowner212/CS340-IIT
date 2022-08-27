@@ -1,0 +1,59 @@
+module MP5a where
+
+import Data.Maybe
+import Data.Ord
+import Data.List
+import Data.List
+import Data.Tree
+import Data.Map (Map, empty, fromList, (!), keys, elems, assocs,
+                 findWithDefault, member, insert, insertWith)
+import System.Random
+import System.Random.Shuffle
+import Control.Concurrent
+import Control.Monad.State
+import System.IO
+import System.Console.ANSI
+import GHC.IO
+
+
+
+
+
+
+
+
+-- Search function from lecture notes
+--                             goal            adj             comb          unvistd  vistd
+
+
+-- returns an orderable value representing the cost for a node of type `a`
+-- When considering multiple unvisited nodes, the "best-first" search strategy
+-- chooses the node with lowest cost:
+
+
+type Seed = Int
+
+------------------------------------------------------
+------------------------------------------------------
+type GraphDims = (Int, Int)
+type GraphNumPaths = Int
+type GraphLoc = (Int, Int) -- (x,y); (1,1) @ top-left
+type GraphPath = [GraphLoc] -- path through the graph
+type GraphNumNodes = Int
+type AdjMap = Map GraphLoc [GraphLoc]
+data Graph = Graph {
+              graphNumNodes :: GraphNumNodes,
+              graphNumPaths :: GraphNumPaths,
+              graphDims :: GraphDims,
+              graphPath :: GraphPath,
+              graphAdjMap :: Map GraphLoc [GraphLoc] 
+            } deriving (Eq)
+
+-- Graph n_nodes n_paths dims [] amap
+-- amap:: GraphLoc [GraphLoc]
+
+adjLocs :: GraphNumNodes -> GraphNumPaths -> GraphDims -> GraphLoc -> [GraphLoc]
+adjLocs n_nodes n_paths (w, h) (x, y) = let nodes = randomPairList n_nodes w h (23+n_nodes `mod` x)
+                                            pairs = createPairings n_paths nodes
+                                            dict = pairsToDict' pairs []
+                                        in (head [snd items | items <- dict, fst items == (w,h)])

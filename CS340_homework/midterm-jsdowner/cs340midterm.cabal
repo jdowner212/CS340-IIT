@@ -1,0 +1,44 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 5b3f960b0492df98dc8bdd02160c06648385bb73fa29a20994e0b03cddbde1d5
+
+name:           cs340midterm
+version:        0.0.0
+build-type:     Simple
+
+library
+  exposed-modules:
+      Midterm
+  other-modules:
+      Paths_cs340midterm
+  hs-source-dirs:
+      src
+  build-depends:
+      HUnit
+    , HUnit-approx
+    , QuickCheck
+    , base >=4.7 && <5
+    , hspec
+  default-language: Haskell2010
+
+test-suite midterm-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      MidtermSpec
+      Paths_cs340midterm
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      HUnit
+    , HUnit-approx
+    , QuickCheck
+    , base >=4.7 && <5
+    , cs340midterm
+    , hspec
+  default-language: Haskell2010

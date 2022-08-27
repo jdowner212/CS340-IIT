@@ -1,0 +1,25 @@
+name:       cs340mp1
+
+# By signing below, I pledge on my honor that I neither gave nor received any
+# unauthorized assistance on the code contained in this repository.
+
+author:     "Jane Downer"      # your name
+maintainer: "jdowner@hawk.iit.edu"  # your IIT email
+
+dependencies:
+- base >= 4.7 && < 5
+- gloss
+
+executables:
+  mp1:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - cs340mp1
+
+library:
+  source-dirs: src

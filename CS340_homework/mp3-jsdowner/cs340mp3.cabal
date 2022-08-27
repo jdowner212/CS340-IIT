@@ -1,0 +1,66 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: a34419367659ca45e106f7e1abd6e05c8cc5d1ea0968a19510e2a0176a5a34cc
+
+name:           cs340mp3
+version:        0.0.0
+author:         Jane Downer
+maintainer:     jsdowner@hawk.iit.edu
+build-type:     Simple
+
+library
+  exposed-modules:
+      MP3a
+      MP3b
+  other-modules:
+      Paths_cs340mp3
+  hs-source-dirs:
+      src
+  build-depends:
+      HUnit
+    , HUnit-approx
+    , QuickCheck
+    , base >=4.7 && <5
+    , hspec
+    , split
+  default-language: Haskell2010
+
+executable mp3
+  main-is: Main.hs
+  other-modules:
+      Paths_cs340mp3
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      HUnit
+    , HUnit-approx
+    , QuickCheck
+    , base >=4.7 && <5
+    , cs340mp3
+    , hspec
+    , split
+  default-language: Haskell2010
+
+test-suite mp3-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      MP3Spec
+      Paths_cs340mp3
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      HUnit
+    , HUnit-approx
+    , QuickCheck
+    , base >=4.7 && <5
+    , cs340mp3
+    , hspec
+    , split
+  default-language: Haskell2010
